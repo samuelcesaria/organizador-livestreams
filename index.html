@@ -3,78 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StreamPulse PRO - Organizador Manual</title>
+    <title>StreamPulse PRO - Dashboard de Transmissões</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        body { background: radial-gradient(circle at top, #0f172a 0%, #020617 100%); color: #f8fafc; min-height: 100vh; }
+        body { 
+            background-color: #0b0f19; 
+            color: #f1f5f9; 
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        .crypto-card {
+            background: linear-gradient(145deg, #131a2c, #0f1524);
+            border: 1px solid #1e293b;
+        }
+        .crypto-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+        }
     </style>
 </head>
-<body class="p-6 font-sans">
-    <div class="max-w-5xl mx-auto">
+<body class="p-4 md:p-8 min-h-screen">
+    <div class="max-w-6xl mx-auto">
         
-        <header class="mb-10 text-center border-b border-slate-800 pb-8">
-            <h1 class="text-4xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-400">
-                StreamPulse <span class="text-white font-light">PRO</span>
-            </h1>
-            <p class="text-slate-400 mt-2 max-w-xl mx-auto text-sm">
-                Painel de controlo manual para monitorizar transmissões e direitos de imagem.
-            </p>
+        <header class="mb-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-slate-800 pb-6">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-black tracking-wider uppercase text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500">
+                    STREAMPULSE // PRO
+                </h1>
+                <p class="text-xs text-slate-400 mt-1 uppercase tracking-widest font-mono">Monitorização de Direitos de Transmissão Manual</p>
+            </div>
+            
+            <div class="w-full md:w-80">
+                <input type="text" id="searchBar" onkeyup="filtrarEventos()" placeholder="Filtrar eventos ativos..." class="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition font-mono">
+            </div>
         </header>
 
-        <div class="mb-8 max-w-md mx-auto">
-            <input type="text" id="searchBar" onkeyup="filtrarEventos()" placeholder="Pesquisar evento (ex: Met Gala, Cannes...)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition shadow-inner">
-        </div>
-
-        <main class="grid gap-6 md:grid-cols-2" id="gridEventos">
+        <main class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" id="gridEventos">
             
-            <div class="evento-card bg-slate-900/80 border border-slate-800 p-6 rounded-xl hover:border-blue-500/40 transition-all flex flex-col justify-between">
+            <div class="evento-card crypto-card p-5 rounded-xl transition-all duration-300 flex flex-col justify-between">
                 <div>
                     <div class="flex justify-between items-center mb-4">
-                        <span class="bg-pink-950 text-pink-400 text-xs px-2.5 py-1 rounded border border-pink-900/50 font-semibold">Moda</span>
-                        <span class="bg-blue-950 text-blue-400 text-xs px-2.5 py-1 rounded border border-blue-900/50 font-semibold">Passadeira</span>
+                        <span class="text-[10px] uppercase font-mono tracking-wider bg-pink-950/60 text-pink-400 px-2 py-0.5 rounded border border-pink-900/40">Moda</span>
+                        <span class="text-[10px] uppercase font-mono tracking-wider bg-emerald-950/60 text-emerald-400 px-2 py-0.5 rounded border border-emerald-900/40">Passadeira OK</span>
                     </div>
-                    <h3 class="evento-nome text-xl font-bold text-white mb-2">Met Gala</h3>
-                    <p class="text-xs text-slate-400 mb-3">Transmissão Oficial: <span class="text-cyan-400 font-bold">Canal Vogue (YouTube)</span></p>
-                    <p class="text-sm text-slate-300 bg-slate-950 p-3 rounded-lg border border-slate-800">
-                        ⚠️ <strong>Regra de Direitos:</strong> Apenas a chegada dos famosos na passadeira vermelha pode ser transmitida. O interior do evento é estritamente proibido.
-                    </p>
+                    <h3 class="evento-nome text-lg font-bold text-slate-100 tracking-tight">Met Gala</h3>
+                    <p class="text-[11px] font-mono text-slate-400 mt-1 mb-3">Canal Oficial: <span class="text-blue-400">Vogue (YouTube)</span></p>
+                    <div class="text-xs text-slate-300 bg-slate-950/80 p-3 rounded-lg border border-slate-900 leading-relaxed font-sans">
+                        Apenas a chegada das celebridades na passadeira vermelha pode ser transmitida. Imagens do interior do museu dão queda de live automática.
+                    </div>
                 </div>
-                <a href="https://www.youtube.com/@Vogue" target="_blank" class="mt-5 block text-center bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold py-3 px-4 rounded-lg transition shadow-lg shadow-blue-950">
-                    Abrir Transmissão no YouTube →
+                <a href="https://www.youtube.com/@Vogue" target="_blank" class="mt-4 block text-center bg-blue-600 hover:bg-blue-500 text-xs font-mono uppercase tracking-wider text-white font-bold py-2.5 px-4 rounded transition">
+                    Aceder Feed YT
                 </a>
             </div>
 
-            <div class="evento-card bg-slate-900/80 border border-slate-800 p-6 rounded-xl hover:border-blue-500/40 transition-all flex flex-col justify-between">
+            <div class="evento-card crypto-card p-5 rounded-xl transition-all duration-300 flex flex-col justify-between">
                 <div>
                     <div class="flex justify-between items-center mb-4">
-                        <span class="bg-amber-950 text-amber-400 text-xs px-2.5 py-1 rounded border border-amber-900/50 font-semibold">Cinema</span>
-                        <span class="bg-green-950 text-green-400 text-xs px-2.5 py-1 rounded border border-green-900/50 font-semibold">Livre no YT</span>
+                        <span class="text-[10px] uppercase font-mono tracking-wider bg-cyan-950/60 text-cyan-400 px-2 py-0.5 rounded border border-cyan-900/40">Cinema</span>
+                        <span class="text-[10px] uppercase font-mono tracking-wider bg-emerald-950/60 text-emerald-400 px-2 py-0.5 rounded border border-emerald-900/40">Livre</span>
                     </div>
-                    <h3 class="evento-nome text-xl font-bold text-white mb-2">Festival de Cannes</h3>
-                    <p class="text-xs text-slate-400 mb-3">Transmissão Oficial: <span class="text-cyan-400 font-bold">TV Festival de Cannes</span></p>
-                    <p class="text-sm text-slate-300 bg-slate-950 p-3 rounded-lg border border-slate-800">
-                        ✅ <strong>Regra de Direitos:</strong> As subidas de escadas das celebridades (Red Steps) e conferências de imprensa são 100% liberadas e gratuitas.
-                    </p>
+                    <h3 class="evento-nome text-lg font-bold text-slate-100 tracking-tight">Festival de Cannes</h3>
+                    <p class="text-[11px] font-mono text-slate-400 mt-1 mb-3">Canal Oficial: <span class="text-blue-400">TV Festival de Cannes</span></p>
+                    <div class="text-xs text-slate-300 bg-slate-950/80 p-3 rounded-lg border border-slate-900 Regular leading-relaxed font-sans">
+                        As famosas subidas de escadas (Red Steps) e as conferências de imprensa dos realizadores e atores são 100% livres de transmissão.
+                    </div>
                 </div>
-                <a href="https://www.youtube.com/@TVFestivaldeCannes" target="_blank" class="mt-5 block text-center bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold py-3 px-4 rounded-lg transition shadow-lg shadow-blue-950">
-                    Abrir Transmissão no YouTube →
+                <a href="https://www.youtube.com/@TVFestivaldeCannes" target="_blank" class="mt-4 block text-center bg-blue-600 hover:bg-blue-500 text-xs font-mono uppercase tracking-wider text-white font-bold py-2.5 px-4 rounded transition">
+                    Aceder Feed YT
                 </a>
             </div>
 
-            <div class="evento-card bg-slate-900/80 border border-slate-800 p-6 rounded-xl hover:border-blue-500/40 transition-all flex flex-col justify-between">
+            <div class="evento-card crypto-card p-5 rounded-xl transition-all duration-300 flex flex-col justify-between">
                 <div>
                     <div class="flex justify-between items-center mb-4">
-                        <span class="bg-indigo-950 text-indigo-400 text-xs px-2.5 py-1 rounded border border-indigo-900/50 font-semibold">Música</span>
-                        <span class="bg-red-950 text-red-400 text-xs px-2.5 py-1 rounded border border-red-900/50 font-semibold">Restrito</span>
+                        <span class="text-[10px] uppercase font-mono tracking-wider bg-purple-950/60 text-purple-400 px-2 py-0.5 rounded border border-purple-900/40">Música</span>
+                        <span class="text-[10px] uppercase font-mono tracking-wider bg-amber-950/60 text-amber-400 px-2 py-0.5 rounded border border-amber-900/40">Apenas Pré-Show</span>
                     </div>
-                    <h3 class="evento-nome text-xl font-bold text-white mb-2">The Grammy Awards</h3>
-                    <p class="text-xs text-slate-400 mb-3">Transmissão Oficial: <span class="text-cyan-400 font-bold">GRAMMYS (YouTube)</span></p>
-                    <p class="text-sm text-slate-300 bg-slate-950 p-3 rounded-lg border border-slate-800">
-                        ❌ <strong>Regra de Direitos:</strong> A passadeira vermelha e o pré-show são grátis. A entrega de prémios principal dá strike automático (direitos da TV).
-                    </p>
+                    <h3 class="evento-nome text-lg font-bold text-slate-100 tracking-tight">The Grammy Awards</h3>
+                    <p class="text-[11px] font-mono text-slate-400 mt-1 mb-3">Canal Oficial: <span class="text-blue-400">GRAMMYS (YouTube)</span></p>
+                    <div class="text-xs text-slate-300 bg-slate-950/80 p-3 rounded-lg border border-slate-900 leading-relaxed font-sans">
+                        A passadeira vermelha e a cerimónia de abertura (onde dão os primeiros prémios) são grátis. O show principal dá strike na hora devido aos direitos da TV.
+                    </div>
                 </div>
-                <a href="https://www.youtube.com/@RecordingAcademy" target="_blank" class="mt-5 block text-center bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold py-3 px-4 rounded-lg transition shadow-lg shadow-blue-950">
-                    Abrir Transmissão no YouTube →
+                <a href="https://www.youtube.com/@RecordingAcademy" target="_blank" class="mt-4 block text-center bg-blue-600 hover:bg-blue-500 text-xs font-mono uppercase tracking-wider text-white font-bold py-2.5 px-4 rounded transition">
+                    Aceder Feed YT
+                </a>
+            </div>
+            <div class="evento-card crypto-card p-5 rounded-xl transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-[10px] uppercase font-mono tracking-wider bg-purple-950/60 text-purple-400 px-2 py-0.5 rounded border border-purple-900/40">Música</span>
+                        <span class="text-[10px] uppercase font-mono tracking-wider bg-amber-950/60 text-amber-400 px-2 py-0.5 rounded border border-amber-900/40">Pré-Show Liberado</span>
+                    </div>
+                    <h3 class="evento-nome text-lg font-bold text-slate-100 tracking-tight">MTV VMA</h3>
+                    <p class="text-[11px] font-mono text-slate-400 mt-1 mb-3">Canal Oficial: <span class="text-blue-400">MTV (YouTube)</span></p>
+                    <div class="text-xs text-slate-300 bg-slate-950/80 p-3 rounded-lg border border-slate-900 leading-relaxed font-sans">
+                        A MTV faz uma transmissão oficial completa da passadeira vermelha e pré-shows no YouTube. A premiação principal exige direitos de TV por cabo.
+                    </div>
+                </div>
+                <a href="https://www.youtube.com/@MTV" target="_blank" class="mt-4 block text-center bg-blue-600 hover:bg-blue-500 text-xs font-mono uppercase tracking-wider text-white font-bold py-2.5 px-4 rounded transition">
+                    Aceder Feed YT
+                </a>
+            </div>
+
+            <div class="evento-card crypto-card p-5 rounded-xl transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-[10px] uppercase font-mono tracking-wider bg-cyan-950/60 text-cyan-400 px-2 py-0.5 rounded border border-cyan-900/40">Cinema</span>
+                        <span class="text-[10px] uppercase font-mono tracking-wider bg-red-950/60 text-red-400 px-2 py-0.5 rounded border border-red-900/40">Altamente Restrito</span>
+                    </div>
+                    <h3 class="evento-nome text-lg font-bold text-slate-100 tracking-tight">The Oscars</h3>
+                    <p class="text-[11px] font-mono text-slate-400 mt-1 mb-3">Canal Oficial: <span class="text-blue-400">Oscars (YouTube)</span></p>
+                    <div class="text-xs text-slate-300 bg-slate-950/80 p-3 rounded-lg border border-slate-900 leading-relaxed font-sans">
+                        Direitos rigorosos. O canal oficial mostra apenas entrevistas rápidas na passadeira vermelha e bastidores. A transmissão do show em si derruba o canal instantaneamente.
+                    </div>
+                </div>
+                <a href="https://www.youtube.com/@Oscars" target="_blank" class="mt-4 block text-center bg-blue-600 hover:bg-blue-500 text-xs font-mono uppercase tracking-wider text-white font-bold py-2.5 px-4 rounded transition">
+                    Aceder Feed YT
+                </a>
+            </div>
+
+            <div class="evento-card crypto-card p-5 rounded-xl transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-[10px] uppercase font-mono tracking-wider bg-purple-950/60 text-purple-400 px-2 py-0.5 rounded border border-purple-900/40">Música</span>
+                        <span class="text-[10px] uppercase font-mono tracking-wider bg-amber-950/60 text-amber-400 px-2 py-0.5 rounded border border-amber-900/30">Premiere Liberada</span>
+                    </div>
+                    <h3 class="evento-nome text-lg font-bold text-slate-100 tracking-tight">Latin GRAMMY</h3>
+                    <p class="text-[11px] font-mono text-slate-400 mt-1 mb-3">Canal Oficial: <span class="text-blue-400">Latin GRAMMYs</span></p>
+                    <div class="text-xs text-slate-300 bg-slate-950/80 p-3 rounded-lg border border-slate-900 leading-relaxed font-sans">
+                        A "Solenidade da Premiere" (onde a maioria dos prémios em português/espanhol são entregues) passa inteira no YouTube. A gala principal é bloqueada por direitos de TV.
+                    </div>
+                </div>
+                <a href="https://www.youtube.com/@LatinGRAMMYs" target="_blank" class="mt-4 block text-center bg-blue-600 hover:bg-blue-500 text-xs font-mono uppercase tracking-wider text-white font-bold py-2.5 px-4 rounded transition">
+                    Aceder Feed YT
                 </a>
             </div>
 
@@ -83,11 +145,11 @@
 
     <script>
         function filtrarEventos() {
-            let input = document.getElementById('searchBar').value.toLowerCase();
-            let cards = document.getElementsByClassName('evento-card');
+            const input = document.getElementById('searchBar').value.toLowerCase();
+            const cards = document.getElementsByClassName('evento-card');
             
             for (let i = 0; i < cards.length; i++) {
-                let nome = cards[i].querySelector('.evento-nome').innerText.toLowerCase();
+                const nome = cards[i].querySelector('.evento-nome').innerText.toLowerCase();
                 if (nome.includes(input)) {
                     cards[i].style.display = "flex";
                 } else {
